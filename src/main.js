@@ -4,9 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import http from 'axios'
+import Qs from 'qs'
 
 Vue.prototype.$http = http
-
+Vue.prototype.$Qs = Qs
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

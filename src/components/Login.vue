@@ -100,14 +100,21 @@ export default {
       if (this.account === '' || this.password === '') {
         alert('请输入用户名或密码')
       } else {
-        // 参数传递
-        let data = {'account': this.account, 'password': this.password, 'sign': 'abcd'}
+        // 参数传递(通过Qs序列化参数)
+        let data = this.$Qs.stringify({
+          account: this.account,
+          password: this.password,
+          sign: 'abcd'
+        })
+        // 网络请求
         this.$http.post('/api/app/login/check', data)
           .then(res => {
             // 打印输出请求数据
-            console.log(res.data.data)
+            console.log(res.data)
             // 登陆成功
-            this.success = true
+            if (res.data.code === 1000) {
+              this.success = true
+            }
           })
           .catch(error => {
             // 打印输出错误信息
